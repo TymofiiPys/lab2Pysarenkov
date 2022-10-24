@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-4e00cb92d3efc94c370c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Lab2Pysarenkov",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Lab2Pysarenkov::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Lab2Pysarenkov-Debug-1081766bd5c97b2a3643.json",
+					"name" : "Lab2Pysarenkov",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Lab2Pysarenkov_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Lab2Pysarenkov_autogen-Debug-a27f947a4270fedb2402.json",
+					"name" : "Lab2Pysarenkov_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Lab2Pysarenkov_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Lab2Pysarenkov_autogen_timestamp_deps-Debug-88e5a1a762a2b58dbc65.json",
+					"name" : "Lab2Pysarenkov_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug",
+		"source" : "E:/prog/Lab2Pysarenkov"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

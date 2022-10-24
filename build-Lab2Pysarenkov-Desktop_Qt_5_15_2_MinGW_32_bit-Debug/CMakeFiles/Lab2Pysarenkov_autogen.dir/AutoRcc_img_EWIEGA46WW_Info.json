@@ -1,0 +1,27 @@
+{
+	"BUILD_DIR" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov_autogen",
+	"CMAKE_BINARY_DIR" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "E:/prog/Lab2Pysarenkov",
+	"CMAKE_SOURCE_DIR" : "E:/prog/Lab2Pysarenkov",
+	"INCLUDE_DIR" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov_autogen/include",
+	"INPUTS" : 
+	[
+		"E:/prog/Lab2Pysarenkov/img/stop.png",
+		"E:/prog/Lab2Pysarenkov/img/start_m.png",
+		"E:/prog/Lab2Pysarenkov/img/next.png",
+		"E:/prog/Lab2Pysarenkov/img/start.png",
+		"E:/prog/Lab2Pysarenkov/img/pause.png",
+		"E:/prog/Lab2Pysarenkov/img/prev.png"
+	],
+	"LOCK_FILE" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/CMakeFiles/Lab2Pysarenkov_autogen.dir/AutoRcc_img_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "img" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_img.cpp",
+	"RCC_EXECUTABLE" : "E:/Qt/5.15.2/mingw81_32/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/CMakeFiles/Lab2Pysarenkov_autogen.dir/AutoRcc_img_EWIEGA46WW_Used.txt",
+	"SOURCE" : "E:/prog/Lab2Pysarenkov/img.qrc",
+	"VERBOSITY" : 0
+}

@@ -1,0 +1,334 @@
+/********************************************************************************
+** Form generated from reading UI file 'mainwindow.ui'
+**
+** Created by: Qt User Interface Compiler version 5.15.2
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_MAINWINDOW_H
+#define UI_MAINWINDOW_H
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_MainWindow
+{
+public:
+    QAction *action_exit;
+    QAction *action_start_auto;
+    QAction *action_pause;
+    QAction *action_stop;
+    QAction *action_manual;
+    QAction *action_prev_step;
+    QAction *action_next_step;
+    QWidget *centralwidget;
+    QGraphicsView *graphicsView;
+    QGroupBox *groupBox_algs;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label_alg;
+    QComboBox *comboBox;
+    QGroupBox *groupBox_str;
+    QRadioButton *radioButton_rnd;
+    QGroupBox *groupBox_rnd;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_amt;
+    QLineEdit *lineEdit_amt;
+    QLabel *label_interv;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_min;
+    QLineEdit *lineEdit_min;
+    QLabel *label_max;
+    QLineEdit *lineEdit_max;
+    QRadioButton *radioButton_file;
+    QPushButton *pushButton_file;
+    QRadioButton *radioButton_man;
+    QPushButton *pushButton_man;
+    QLabel *label_str_entered;
+    QGraphicsView *graphicsView_2;
+    QLabel *label;
+    QLabel *label_2;
+    QMenuBar *menubar;
+    QMenu *menu_file;
+    QMenu *menu_demo;
+    QMenu *menu_3;
+    QMenu *menu_4;
+    QStatusBar *statusbar;
+    QToolBar *toolBar;
+
+    void setupUi(QMainWindow *MainWindow)
+    {
+        if (MainWindow->objectName().isEmpty())
+            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+        MainWindow->resize(1020, 573);
+        action_exit = new QAction(MainWindow);
+        action_exit->setObjectName(QString::fromUtf8("action_exit"));
+        action_start_auto = new QAction(MainWindow);
+        action_start_auto->setObjectName(QString::fromUtf8("action_start_auto"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/img/img/start.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_start_auto->setIcon(icon);
+        action_pause = new QAction(MainWindow);
+        action_pause->setObjectName(QString::fromUtf8("action_pause"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/img/img/pause.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_pause->setIcon(icon1);
+        action_stop = new QAction(MainWindow);
+        action_stop->setObjectName(QString::fromUtf8("action_stop"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/img/img/stop.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_stop->setIcon(icon2);
+        action_manual = new QAction(MainWindow);
+        action_manual->setObjectName(QString::fromUtf8("action_manual"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/img/img/start_m.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_manual->setIcon(icon3);
+        action_prev_step = new QAction(MainWindow);
+        action_prev_step->setObjectName(QString::fromUtf8("action_prev_step"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/img/img/prev.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_prev_step->setIcon(icon4);
+        action_next_step = new QAction(MainWindow);
+        action_next_step->setObjectName(QString::fromUtf8("action_next_step"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/img/img/next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_next_step->setIcon(icon5);
+        centralwidget = new QWidget(MainWindow);
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        graphicsView = new QGraphicsView(centralwidget);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(390, 210, 621, 261));
+        groupBox_algs = new QGroupBox(centralwidget);
+        groupBox_algs->setObjectName(QString::fromUtf8("groupBox_algs"));
+        groupBox_algs->setGeometry(QRect(10, 10, 331, 81));
+        widget = new QWidget(groupBox_algs);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(10, 10, 301, 55));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label_alg = new QLabel(widget);
+        label_alg->setObjectName(QString::fromUtf8("label_alg"));
+
+        verticalLayout->addWidget(label_alg);
+
+        comboBox = new QComboBox(widget);
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        verticalLayout->addWidget(comboBox);
+
+        groupBox_str = new QGroupBox(centralwidget);
+        groupBox_str->setObjectName(QString::fromUtf8("groupBox_str"));
+        groupBox_str->setGeometry(QRect(10, 90, 331, 261));
+        radioButton_rnd = new QRadioButton(groupBox_str);
+        radioButton_rnd->setObjectName(QString::fromUtf8("radioButton_rnd"));
+        radioButton_rnd->setGeometry(QRect(10, 30, 311, 24));
+        groupBox_rnd = new QGroupBox(groupBox_str);
+        groupBox_rnd->setObjectName(QString::fromUtf8("groupBox_rnd"));
+        groupBox_rnd->setEnabled(false);
+        groupBox_rnd->setGeometry(QRect(10, 60, 311, 111));
+        widget1 = new QWidget(groupBox_rnd);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(10, 11, 291, 92));
+        verticalLayout_2 = new QVBoxLayout(widget1);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        label_amt = new QLabel(widget1);
+        label_amt->setObjectName(QString::fromUtf8("label_amt"));
+
+        horizontalLayout->addWidget(label_amt);
+
+        lineEdit_amt = new QLineEdit(widget1);
+        lineEdit_amt->setObjectName(QString::fromUtf8("lineEdit_amt"));
+
+        horizontalLayout->addWidget(lineEdit_amt);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
+
+        label_interv = new QLabel(widget1);
+        label_interv->setObjectName(QString::fromUtf8("label_interv"));
+
+        verticalLayout_2->addWidget(label_interv);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        label_min = new QLabel(widget1);
+        label_min->setObjectName(QString::fromUtf8("label_min"));
+
+        horizontalLayout_2->addWidget(label_min);
+
+        lineEdit_min = new QLineEdit(widget1);
+        lineEdit_min->setObjectName(QString::fromUtf8("lineEdit_min"));
+
+        horizontalLayout_2->addWidget(lineEdit_min);
+
+        label_max = new QLabel(widget1);
+        label_max->setObjectName(QString::fromUtf8("label_max"));
+
+        horizontalLayout_2->addWidget(label_max);
+
+        lineEdit_max = new QLineEdit(widget1);
+        lineEdit_max->setObjectName(QString::fromUtf8("lineEdit_max"));
+
+        horizontalLayout_2->addWidget(lineEdit_max);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_2);
+
+        radioButton_file = new QRadioButton(groupBox_str);
+        radioButton_file->setObjectName(QString::fromUtf8("radioButton_file"));
+        radioButton_file->setGeometry(QRect(11, 183, 152, 24));
+        pushButton_file = new QPushButton(groupBox_str);
+        pushButton_file->setObjectName(QString::fromUtf8("pushButton_file"));
+        pushButton_file->setEnabled(false);
+        pushButton_file->setGeometry(QRect(170, 181, 151, 29));
+        radioButton_man = new QRadioButton(groupBox_str);
+        radioButton_man->setObjectName(QString::fromUtf8("radioButton_man"));
+        radioButton_man->setGeometry(QRect(12, 223, 143, 24));
+        pushButton_man = new QPushButton(groupBox_str);
+        pushButton_man->setObjectName(QString::fromUtf8("pushButton_man"));
+        pushButton_man->setEnabled(false);
+        pushButton_man->setGeometry(QRect(170, 221, 151, 29));
+        label_str_entered = new QLabel(centralwidget);
+        label_str_entered->setObjectName(QString::fromUtf8("label_str_entered"));
+        label_str_entered->setGeometry(QRect(10, 360, 331, 20));
+        graphicsView_2 = new QGraphicsView(centralwidget);
+        graphicsView_2->setObjectName(QString::fromUtf8("graphicsView_2"));
+        graphicsView_2->setGeometry(QRect(390, 40, 621, 141));
+        graphicsView_2->setAutoFillBackground(false);
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(390, 190, 211, 20));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(390, 20, 91, 20));
+        MainWindow->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(MainWindow);
+        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setGeometry(QRect(0, 0, 1020, 26));
+        menu_file = new QMenu(menubar);
+        menu_file->setObjectName(QString::fromUtf8("menu_file"));
+        menu_demo = new QMenu(menubar);
+        menu_demo->setObjectName(QString::fromUtf8("menu_demo"));
+        menu_3 = new QMenu(menu_demo);
+        menu_3->setObjectName(QString::fromUtf8("menu_3"));
+        menu_4 = new QMenu(menu_demo);
+        menu_4->setObjectName(QString::fromUtf8("menu_4"));
+        MainWindow->setMenuBar(menubar);
+        statusbar = new QStatusBar(MainWindow);
+        statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        MainWindow->setStatusBar(statusbar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
+
+        menubar->addAction(menu_file->menuAction());
+        menubar->addAction(menu_demo->menuAction());
+        menu_file->addSeparator();
+        menu_file->addAction(action_exit);
+        menu_demo->addAction(menu_3->menuAction());
+        menu_demo->addSeparator();
+        menu_demo->addAction(menu_4->menuAction());
+        menu_demo->addSeparator();
+        menu_demo->addAction(action_start_auto);
+        menu_demo->addAction(action_pause);
+        menu_demo->addSeparator();
+        menu_demo->addAction(action_manual);
+        menu_demo->addAction(action_prev_step);
+        menu_demo->addAction(action_next_step);
+        menu_demo->addSeparator();
+        menu_demo->addAction(action_stop);
+        menu_4->addSeparator();
+        toolBar->addAction(action_start_auto);
+        toolBar->addAction(action_pause);
+        toolBar->addSeparator();
+        toolBar->addAction(action_manual);
+        toolBar->addAction(action_prev_step);
+        toolBar->addAction(action_next_step);
+        toolBar->addSeparator();
+        toolBar->addAction(action_stop);
+
+        retranslateUi(MainWindow);
+
+        QMetaObject::connectSlotsByName(MainWindow);
+    } // setupUi
+
+    void retranslateUi(QMainWindow *MainWindow)
+    {
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217 \321\200\320\276\320\261\320\276\321\202\320\270 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274\321\226\320\262", nullptr));
+        action_exit->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\271\321\202\320\270", nullptr));
+#if QT_CONFIG(tooltip)
+        action_exit->setToolTip(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\271\321\202\320\270 \321\226\320\267 \320\277\321\200\320\276\320\263\321\200\320\260\320\274\320\270", nullptr));
+#endif // QT_CONFIG(tooltip)
+        action_start_auto->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202 (\320\260\320\262\321\202\320\276\320\274\320\260\321\202\320\270\321\207\320\275\320\276)", nullptr));
+        action_pause->setText(QCoreApplication::translate("MainWindow", "\320\237\320\260\321\203\320\267\320\260/\320\277\321\200\320\276\320\264\320\276\320\262\320\266\320\270\321\202\320\270", nullptr));
+        action_stop->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\276\320\277", nullptr));
+        action_manual->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202 (\320\262\321\200\321\203\321\207\320\275\321\203)", nullptr));
+        action_prev_step->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\277\320\265\321\200\320\265\320\264\320\275\321\226\320\271 \320\272\321\200\320\276\320\272", nullptr));
+        action_next_step->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\203\320\277\320\275\320\270\320\271 \320\272\321\200\320\276\320\272", nullptr));
+#if QT_CONFIG(tooltip)
+        graphicsView->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\242\321\203\321\202 \321\203 \320\262\320\270\320\263\320\273\321\217\320\264\321\226 \320\264\321\226\320\260\320\263\321\200\320\260\320\274\320\270 \320\264\320\265\320\274\320\276\320\275\321\201\321\202\321\200\321\203\321\216\321\202\321\214\321\201\321\217 \320\265\320\273\320\265\320\274\320\265\320\275\321\202\320\270 \321\201\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\270</p><p>\320\262 \320\277\321\200\320\276\321\206\320\265\321\201\321\226 \320\262\320\270\320\272\320\276\320\275\320\260\320\275\320\275\321\217 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274\321\203, \320\264\320\265 \321\227\321\205\320\275\321\217 \320\262\320\270\321\201\320\276\321\202\320\260 \320\277\321\200\320\276\320\277\320\276\321\200\321\206\321\226\320\271\320\275\320\260 \320\262\320\265\320\273\320\270\321\207\320\270\320\275\321\226, \321\211\320\276 \320\267\320\261\320\265\321\200\321\226\320\263\320\260\321\224 \320\265\320\273\320\265\320\274\320\265\320"
+                        "\275\321\202.</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        groupBox_algs->setTitle(QString());
+        label_alg->setText(QCoreApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274, \321\211\320\276 \320\261\321\203\320\264\320\265 \320\264\320\265\320\274\320\276\320\275\321\201\321\202\321\200\321\203\320\262\320\260\321\202\320\270\321\201\321\214", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "<\320\276\320\261\320\265\321\200\321\226\321\202\321\214 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274>", nullptr));
+
+        groupBox_str->setTitle(QCoreApplication::translate("MainWindow", "\320\241\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\260", nullptr));
+        radioButton_rnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\277\320\260\320\264\320\272\320\276\320\262\320\260 \320\263\320\265\320\275\320\265\321\200\320\260\321\206\321\226\321\217", nullptr));
+        groupBox_rnd->setTitle(QString());
+        label_amt->setText(QCoreApplication::translate("MainWindow", "\320\232\321\226\320\273\321\214\320\272\321\226\321\201\321\202\321\214 \320\265\320\273\320\265\320\274\320\265\320\275\321\202\321\226\320\262", nullptr));
+        label_interv->setText(QCoreApplication::translate("MainWindow", "\320\206\320\275\321\202\320\265\321\200\320\262\320\260\320\273\320\270:", nullptr));
+        label_min->setText(QCoreApplication::translate("MainWindow", "\320\234\321\226\320\275.", nullptr));
+        label_max->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\320\272\321\201.", nullptr));
+        radioButton_file->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\265\320\275\320\275\321\217 \321\226\320\267 \321\204\320\260\320\271\320\273\321\203", nullptr));
+        pushButton_file->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\321\200\320\260\321\202\320\270 \321\204\320\260\320\271\320\273", nullptr));
+        radioButton_man->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\265\320\275\320\275\321\217 \320\262\321\200\321\203\321\207\320\275\321\203", nullptr));
+        pushButton_man->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\321\201\321\202\320\270", nullptr));
+        label_str_entered->setText(QString());
+#if QT_CONFIG(tooltip)
+        graphicsView_2->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\241\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\260</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        label->setText(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274\321\203", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\260", nullptr));
+        menu_file->setTitle(QCoreApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", nullptr));
+        menu_demo->setTitle(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217", nullptr));
+        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274\320\270", nullptr));
+        menu_4->setTitle(QCoreApplication::translate("MainWindow", "\320\206\321\201\321\202\320\276\321\200\321\226\321\217", nullptr));
+        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class MainWindow: public Ui_MainWindow {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_MAINWINDOW_H
