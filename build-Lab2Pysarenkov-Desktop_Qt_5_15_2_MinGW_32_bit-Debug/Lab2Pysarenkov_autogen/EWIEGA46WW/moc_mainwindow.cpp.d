@@ -1,10 +1,12 @@
 E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov_autogen/EWIEGA46WW/moc_mainwindow.cpp: E:/prog/Lab2Pysarenkov/mainwindow.h \
   E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov_autogen/moc_predefs.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/QTimer \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qalgorithms.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qarraydata.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qatomic.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qatomic_cxx11.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbasicatomic.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbytearray.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbytearraylist.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qchar.h \
@@ -52,6 +54,7 @@ E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qsysinfo.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qsystemdetection.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qtcore-config.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/qtimer.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qtypeinfo.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qvarlengtharray.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qvector.h \

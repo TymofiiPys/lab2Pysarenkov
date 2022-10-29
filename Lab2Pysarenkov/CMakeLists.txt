@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
         manual_entry.cpp
         manual_entry.ui
         algstruct.h algstruct.cpp
+        bubble_sort.h bubble_sort.cpp
+        ASinteraction.h ASInteraction.cpp
         img.qrc
 )
 

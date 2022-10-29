@@ -21,6 +21,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
@@ -43,14 +44,14 @@ public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
     QGroupBox *groupBox_algs;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label_alg;
     QComboBox *comboBox;
     QGroupBox *groupBox_str;
     QRadioButton *radioButton_rnd;
     QGroupBox *groupBox_rnd;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QLabel *label_amt;
@@ -61,6 +62,7 @@ public:
     QLineEdit *lineEdit_min;
     QLabel *label_max;
     QLineEdit *lineEdit_max;
+    QPushButton *pushButton_rnd;
     QRadioButton *radioButton_file;
     QPushButton *pushButton_file;
     QRadioButton *radioButton_man;
@@ -69,6 +71,8 @@ public:
     QGraphicsView *graphicsView_2;
     QLabel *label;
     QLabel *label_2;
+    QPushButton *pushButton_print;
+    QPlainTextEdit *plainTextEdit;
     QMenuBar *menubar;
     QMenu *menu_file;
     QMenu *menu_demo;
@@ -81,7 +85,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1020, 573);
+        MainWindow->resize(1020, 623);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         action_exit = new QAction(MainWindow);
         action_exit->setObjectName(QString::fromUtf8("action_exit"));
         action_start_auto = new QAction(MainWindow);
@@ -118,22 +127,23 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(390, 210, 621, 261));
+        graphicsView->setGeometry(QRect(390, 210, 620, 320));
         groupBox_algs = new QGroupBox(centralwidget);
         groupBox_algs->setObjectName(QString::fromUtf8("groupBox_algs"));
         groupBox_algs->setGeometry(QRect(10, 10, 331, 81));
-        widget = new QWidget(groupBox_algs);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 10, 301, 55));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(groupBox_algs);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 301, 55));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_alg = new QLabel(widget);
+        label_alg = new QLabel(layoutWidget);
         label_alg->setObjectName(QString::fromUtf8("label_alg"));
 
         verticalLayout->addWidget(label_alg);
 
-        comboBox = new QComboBox(widget);
+        comboBox = new QComboBox(layoutWidget);
+        comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
@@ -141,28 +151,28 @@ public:
 
         groupBox_str = new QGroupBox(centralwidget);
         groupBox_str->setObjectName(QString::fromUtf8("groupBox_str"));
-        groupBox_str->setGeometry(QRect(10, 90, 331, 261));
+        groupBox_str->setGeometry(QRect(10, 90, 331, 291));
         radioButton_rnd = new QRadioButton(groupBox_str);
         radioButton_rnd->setObjectName(QString::fromUtf8("radioButton_rnd"));
         radioButton_rnd->setGeometry(QRect(10, 30, 311, 24));
         groupBox_rnd = new QGroupBox(groupBox_str);
         groupBox_rnd->setObjectName(QString::fromUtf8("groupBox_rnd"));
         groupBox_rnd->setEnabled(false);
-        groupBox_rnd->setGeometry(QRect(10, 60, 311, 111));
-        widget1 = new QWidget(groupBox_rnd);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(10, 11, 291, 92));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        groupBox_rnd->setGeometry(QRect(10, 60, 311, 141));
+        layoutWidget1 = new QWidget(groupBox_rnd);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 11, 291, 92));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label_amt = new QLabel(widget1);
+        label_amt = new QLabel(layoutWidget1);
         label_amt->setObjectName(QString::fromUtf8("label_amt"));
 
         horizontalLayout->addWidget(label_amt);
 
-        lineEdit_amt = new QLineEdit(widget1);
+        lineEdit_amt = new QLineEdit(layoutWidget1);
         lineEdit_amt->setObjectName(QString::fromUtf8("lineEdit_amt"));
 
         horizontalLayout->addWidget(lineEdit_amt);
@@ -170,29 +180,29 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout);
 
-        label_interv = new QLabel(widget1);
+        label_interv = new QLabel(layoutWidget1);
         label_interv->setObjectName(QString::fromUtf8("label_interv"));
 
         verticalLayout_2->addWidget(label_interv);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_min = new QLabel(widget1);
+        label_min = new QLabel(layoutWidget1);
         label_min->setObjectName(QString::fromUtf8("label_min"));
 
         horizontalLayout_2->addWidget(label_min);
 
-        lineEdit_min = new QLineEdit(widget1);
+        lineEdit_min = new QLineEdit(layoutWidget1);
         lineEdit_min->setObjectName(QString::fromUtf8("lineEdit_min"));
 
         horizontalLayout_2->addWidget(lineEdit_min);
 
-        label_max = new QLabel(widget1);
+        label_max = new QLabel(layoutWidget1);
         label_max->setObjectName(QString::fromUtf8("label_max"));
 
         horizontalLayout_2->addWidget(label_max);
 
-        lineEdit_max = new QLineEdit(widget1);
+        lineEdit_max = new QLineEdit(layoutWidget1);
         lineEdit_max->setObjectName(QString::fromUtf8("lineEdit_max"));
 
         horizontalLayout_2->addWidget(lineEdit_max);
@@ -200,20 +210,23 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
+        pushButton_rnd = new QPushButton(groupBox_rnd);
+        pushButton_rnd->setObjectName(QString::fromUtf8("pushButton_rnd"));
+        pushButton_rnd->setGeometry(QRect(160, 105, 141, 30));
         radioButton_file = new QRadioButton(groupBox_str);
         radioButton_file->setObjectName(QString::fromUtf8("radioButton_file"));
-        radioButton_file->setGeometry(QRect(11, 183, 152, 24));
+        radioButton_file->setGeometry(QRect(11, 212, 152, 24));
         pushButton_file = new QPushButton(groupBox_str);
         pushButton_file->setObjectName(QString::fromUtf8("pushButton_file"));
         pushButton_file->setEnabled(false);
-        pushButton_file->setGeometry(QRect(170, 181, 151, 29));
+        pushButton_file->setGeometry(QRect(170, 210, 151, 29));
         radioButton_man = new QRadioButton(groupBox_str);
         radioButton_man->setObjectName(QString::fromUtf8("radioButton_man"));
-        radioButton_man->setGeometry(QRect(12, 223, 143, 24));
+        radioButton_man->setGeometry(QRect(12, 252, 143, 24));
         pushButton_man = new QPushButton(groupBox_str);
         pushButton_man->setObjectName(QString::fromUtf8("pushButton_man"));
         pushButton_man->setEnabled(false);
-        pushButton_man->setGeometry(QRect(170, 221, 151, 29));
+        pushButton_man->setGeometry(QRect(170, 250, 151, 29));
         label_str_entered = new QLabel(centralwidget);
         label_str_entered->setObjectName(QString::fromUtf8("label_str_entered"));
         label_str_entered->setGeometry(QRect(10, 360, 331, 20));
@@ -227,10 +240,16 @@ public:
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(390, 20, 91, 20));
+        pushButton_print = new QPushButton(centralwidget);
+        pushButton_print->setObjectName(QString::fromUtf8("pushButton_print"));
+        pushButton_print->setGeometry(QRect(20, 410, 93, 29));
+        plainTextEdit = new QPlainTextEdit(centralwidget);
+        plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(140, 390, 171, 87));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1020, 26));
+        menubar->setGeometry(QRect(0, 0, 1020, 17));
         menu_file = new QMenu(menubar);
         menu_file->setObjectName(QString::fromUtf8("menu_file"));
         menu_demo = new QMenu(menubar);
@@ -298,6 +317,7 @@ public:
         groupBox_algs->setTitle(QString());
         label_alg->setText(QCoreApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274, \321\211\320\276 \320\261\321\203\320\264\320\265 \320\264\320\265\320\274\320\276\320\275\321\201\321\202\321\200\321\203\320\262\320\260\321\202\320\270\321\201\321\214", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "<\320\276\320\261\320\265\321\200\321\226\321\202\321\214 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274>", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Bubble Sort", nullptr));
 
         groupBox_str->setTitle(QCoreApplication::translate("MainWindow", "\320\241\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\260", nullptr));
         radioButton_rnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\277\320\260\320\264\320\272\320\276\320\262\320\260 \320\263\320\265\320\275\320\265\321\200\320\260\321\206\321\226\321\217", nullptr));
@@ -306,6 +326,7 @@ public:
         label_interv->setText(QCoreApplication::translate("MainWindow", "\320\206\320\275\321\202\320\265\321\200\320\262\320\260\320\273\320\270:", nullptr));
         label_min->setText(QCoreApplication::translate("MainWindow", "\320\234\321\226\320\275.", nullptr));
         label_max->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\320\272\321\201.", nullptr));
+        pushButton_rnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\321\201\321\202\320\270", nullptr));
         radioButton_file->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\265\320\275\320\275\321\217 \321\226\320\267 \321\204\320\260\320\271\320\273\321\203", nullptr));
         pushButton_file->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\321\200\320\260\321\202\320\270 \321\204\320\260\320\271\320\273", nullptr));
         radioButton_man->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\265\320\275\320\275\321\217 \320\262\321\200\321\203\321\207\320\275\321\203", nullptr));
@@ -316,6 +337,7 @@ public:
 #endif // QT_CONFIG(tooltip)
         label->setText(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274\321\203", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\321\200\321\203\320\272\321\202\321\203\321\200\320\260", nullptr));
+        pushButton_print->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         menu_file->setTitle(QCoreApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", nullptr));
         menu_demo->setTitle(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217", nullptr));
         menu_3->setTitle(QCoreApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274\320\270", nullptr));

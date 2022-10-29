@@ -72,9 +72,21 @@
 	"HEADERS" : 
 	[
 		[
+			"E:/prog/Lab2Pysarenkov/ASinteraction.h",
+			"MU",
+			"EWIEGA46WW/moc_ASinteraction.cpp",
+			null
+		],
+		[
 			"E:/prog/Lab2Pysarenkov/algstruct.h",
 			"MU",
 			"EWIEGA46WW/moc_algstruct.cpp",
+			null
+		],
+		[
+			"E:/prog/Lab2Pysarenkov/bubble_sort.h",
+			"MU",
+			"EWIEGA46WW/moc_bubble_sort.cpp",
 			null
 		],
 		[
@@ -142,7 +154,9 @@
 	"SETTINGS_FILE" : "E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/CMakeFiles/Lab2Pysarenkov_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "E:/prog/Lab2Pysarenkov/ASInteraction.cpp", "MU", null ],
 		[ "E:/prog/Lab2Pysarenkov/algstruct.cpp", "MU", null ],
+		[ "E:/prog/Lab2Pysarenkov/bubble_sort.cpp", "MU", null ],
 		[ "E:/prog/Lab2Pysarenkov/main.cpp", "MU", null ],
 		[ "E:/prog/Lab2Pysarenkov/mainwindow.cpp", "MU", null ],
 		[ "E:/prog/Lab2Pysarenkov/manual_entry.cpp", "MU", null ]

@@ -1,9 +1,11 @@
 Lab2Pysarenkov_autogen/timestamp: \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/QTimer \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qalgorithms.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qarraydata.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qatomic.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qatomic_cxx11.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbasicatomic.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbytearray.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qbytearraylist.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qchar.h \
@@ -51,6 +53,7 @@ Lab2Pysarenkov_autogen/timestamp: \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qsysinfo.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qsystemdetection.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qtcore-config.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtCore/qtimer.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qtypeinfo.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qvarlengtharray.h \
   E:/Qt/5.15.2/mingw81_32/include/QtCore/qvector.h \
@@ -311,9 +314,13 @@ Lab2Pysarenkov_autogen/timestamp: \
   E:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdarg.h \
   E:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/stddef.h \
   E:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h \
+  E:/prog/Lab2Pysarenkov/ASInteraction.cpp \
+  E:/prog/Lab2Pysarenkov/ASinteraction.h \
   E:/prog/Lab2Pysarenkov/CMakeLists.txt \
   E:/prog/Lab2Pysarenkov/algstruct.cpp \
   E:/prog/Lab2Pysarenkov/algstruct.h \
+  E:/prog/Lab2Pysarenkov/bubble_sort.cpp \
+  E:/prog/Lab2Pysarenkov/bubble_sort.h \
   E:/prog/Lab2Pysarenkov/img.qrc \
   E:/prog/Lab2Pysarenkov/main.cpp \
   E:/prog/Lab2Pysarenkov/mainwindow.cpp \

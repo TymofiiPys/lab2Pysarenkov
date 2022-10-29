@@ -1,11 +1,14 @@
 #include "mainwindow.h"
-
+#include "algstruct.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+    AlgStruct ast;
     w.show();
-    return a.exec();
+    const int ai= a.exec();
+    remove("struct.txt");
+    return ai;
 }
