@@ -70,20 +70,29 @@ E:/prog/build-Lab2Pysarenkov-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/Lab2Pysarenkov
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qkeysequence.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qmatrix.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qpaintdevice.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtGui/qpainter.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qpalette.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtGui/qpen.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qpixelformat.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qpixmap.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qpolygon.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qregion.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qrgb.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qrgba64.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qtgui-config.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qtguiglobal.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qtransform.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qwindowdefs.h \
   E:/Qt/5.15.2/mingw81_32/include/QtGui/qwindowdefs_win.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/QGraphicsView \
   E:/Qt/5.15.2/mingw81_32/include/QtWidgets/QMainWindow \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qabstractscrollarea.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qgraphicsscene.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qgraphicsview.h \
   E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qmainwindow.h \
+  E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qscrollarea.h \
   E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qsizepolicy.h \
   E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qtabwidget.h \
   E:/Qt/5.15.2/mingw81_32/include/QtWidgets/qtwidgets-config.h \

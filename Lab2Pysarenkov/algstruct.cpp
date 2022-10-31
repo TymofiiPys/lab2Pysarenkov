@@ -24,18 +24,18 @@ void AlgStruct::enterS(){
     this->ALG_SET = row[1];
     std::getline(file, row);//Одновимірний масив записаний в одному рядку
     for (int i = 0; i < row.length(); i++) {
-      if (row == "") {
+      if (row[i] == ' ') {
           this->S.push_back(std::stod(sd));
           sd = "";
       } else {
         sd+=row[i];
       }
-     
     }
+    this->S.push_back(std::stod(sd));
     file.close();
 }
 
-void AlgStruct::saveStepInfo(int* ind, int indamt, std::vector<double> vstep, int step){
+void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std::vector<double> vstep, int step){
     std::ofstream o("temp.txt");
     std::ifstream i("steps.txt");
     o << step << std::endl;
@@ -45,24 +45,35 @@ void AlgStruct::saveStepInfo(int* ind, int indamt, std::vector<double> vstep, in
             o << " ";
     }
     o << std::endl;
-    for(auto it = vstep.begin(); it != vstep.end(); it++){
-        o << *it;
-        if(it != S.end() - 1)
+    for(int i = 0; i < hamt; i++){
+        o << highlight[i];
+        if(i != hamt - 1)
             o << " ";
     }
     o << std::endl;
+    for(auto it = vstep.begin(); it != vstep.end(); it++){
+        o << *it;
+        if(it != vstep.end() - 1)
+            o << " ";
+    }
+    o << std::endl;
+    std::string s;
+    std::getline(i, s);
     if(step > 15)//Зберігається інформація не більше, ніж для 15 кроків
     {
-        std::string s;
         int c = 0;
-        while(c < 14){
+        while(c < 42){
             std::getline(i, s);
             o << s << std::endl;
             c++;
         }
     }
     else
-        o << i.rdbuf();
+        while(!i.eof())
+        {
+            std::getline(i, s);
+            o << s << std::endl;
+        }
     i.close();
     o.flush();
     o.close();

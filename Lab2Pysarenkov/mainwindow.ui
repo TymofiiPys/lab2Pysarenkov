@@ -20,7 +20,7 @@
    <string>Демонстрація роботи алгоритмів</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QGraphicsView" name="graphicsView_demo">
     <property name="geometry">
      <rect>
       <x>390</x>
@@ -32,13 +32,25 @@
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тут у вигляді діаграми демонструються елементи структури&lt;/p&gt;&lt;p&gt;в процесі виконання алгоритму, де їхня висота пропорційна величині, що зберігає елемент.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+    <property name="backgroundBrush">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>0</red>
+       <green>0</green>
+       <blue>0</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_algs">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>331</width>
+      <width>341</width>
       <height>81</height>
      </rect>
     </property>
@@ -51,7 +63,7 @@
        <x>10</x>
        <y>10</y>
        <width>301</width>
-       <height>55</height>
+       <height>57</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -84,8 +96,8 @@
      <rect>
       <x>10</x>
       <y>90</y>
-      <width>331</width>
-      <height>291</height>
+      <width>341</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="title">
@@ -112,7 +124,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>311</width>
+       <width>321</width>
        <height>141</height>
       </rect>
      </property>
@@ -124,8 +136,8 @@
        <rect>
         <x>10</x>
         <y>11</y>
-        <width>291</width>
-        <height>92</height>
+        <width>301</width>
+        <height>96</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -179,10 +191,10 @@
      <widget class="QPushButton" name="pushButton_rnd">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>105</y>
+        <x>170</x>
+        <y>110</y>
         <width>141</width>
-        <height>30</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="text">
@@ -195,7 +207,7 @@
       <rect>
        <x>11</x>
        <y>212</y>
-       <width>152</width>
+       <width>161</width>
        <height>24</height>
       </rect>
      </property>
@@ -209,7 +221,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>180</x>
        <y>210</y>
        <width>151</width>
        <height>29</height>
@@ -238,7 +250,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>180</x>
        <y>250</y>
        <width>151</width>
        <height>29</height>
@@ -248,12 +260,34 @@
       <string>Ввести</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_draw">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>290</y>
+       <width>151</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Відобразити рисунок</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="label_str_entered">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>360</y>
+      <x>20</x>
+      <y>430</y>
       <width>331</width>
       <height>20</height>
      </rect>
@@ -304,29 +338,6 @@
      <string>Структура</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_print">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>410</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>390</y>
-      <width>171</width>
-      <height>87</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -334,7 +345,7 @@
      <x>0</x>
      <y>0</y>
      <width>1020</width>
-     <height>17</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -377,6 +388,9 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -413,6 +427,9 @@
    </property>
   </action>
   <action name="action_pause">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/img/img/pause.png</normaloff>:/img/img/pause.png</iconset>
@@ -440,6 +457,9 @@
    </property>
   </action>
   <action name="action_prev_step">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/img/img/prev.png</normaloff>:/img/img/prev.png</iconset>
@@ -449,6 +469,9 @@
    </property>
   </action>
   <action name="action_next_step">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/img/img/next.png</normaloff>:/img/img/next.png</iconset>

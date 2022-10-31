@@ -21,7 +21,7 @@ public:
     std::vector<double> get_S();
     void set_S(std::vector<double> v);
     void get_set_Step(int* x, bool get_or_set);
-    void saveStepInfo(int* ind, int indamt, std::vector<double> vstep, int step);
+    void saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std::vector<double> vstep, int step);
 };
 
 #endif // ALGSTRUCT_H

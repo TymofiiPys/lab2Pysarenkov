@@ -4,6 +4,8 @@
 
 int main(int argc, char *argv[])
 {
+    remove("struct.txt");
+    remove("temp.txt");
     QApplication a(argc, argv);
     MainWindow w;
     AlgStruct ast;

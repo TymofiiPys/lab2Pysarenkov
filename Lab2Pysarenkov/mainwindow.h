@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QGraphicsView>
 #include <QMainWindow>
 #include <QTimer>
 
@@ -17,6 +18,7 @@ public:
     ~MainWindow();
 public slots:
     void call_algorithm();    
+    void DrawAlg();
 private slots:
     void on_action_exit_triggered();
 
@@ -34,9 +36,15 @@ private slots:
 
     void on_pushButton_rnd_clicked();
     
-    void on_pushButton_print_clicked();
-    
     void on_comboBox_currentIndexChanged(int index);
+    
+    void on_action_manual_triggered();
+    
+    void on_action_prev_step_triggered();
+    
+    void on_action_next_step_triggered();
+    
+    void on_pushButton_draw_clicked();
     
 private:
     Ui::MainWindow *ui;
@@ -45,5 +53,10 @@ private:
     int step; //Крок алгоритму
     int alg_ind; //Індекс алгоритму, що доменструється
     bool finished; //Чи завершене виконання алгоритму (якщо так - таймер зупиняється або рух на крок уперед унеможливлюється)
+    int GRHEIGHT; //Висота graphicsview_demo
+    int GRWIDTH; //Ширина graphicsview_demo
+    int elscalew;//Ширина стовпчика, що представляє елемент
+    double elscaleh; //Скільки пікселів займатиме стовпчик, що представляє елемент величиною 1
+    QPen pen;
 };
 #endif // MAINWINDOW_H
