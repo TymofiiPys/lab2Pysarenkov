@@ -6,5 +6,6 @@
         <file>img/pause.png</file>
         <file>img/prev.png</file>
         <file>img/stop.png</file>
+        <file>img/cont.png</file>
     </qresource>
 </RCC>

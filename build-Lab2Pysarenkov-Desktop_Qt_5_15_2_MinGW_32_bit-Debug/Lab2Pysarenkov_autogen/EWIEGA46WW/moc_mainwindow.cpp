@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[18];
-    char stringdata0[404];
+    QByteArrayData data[24];
+    char stringdata0[554];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,7 +49,13 @@ QT_MOC_LITERAL(13, 284, 5), // "index"
 QT_MOC_LITERAL(14, 290, 26), // "on_action_manual_triggered"
 QT_MOC_LITERAL(15, 317, 29), // "on_action_prev_step_triggered"
 QT_MOC_LITERAL(16, 347, 29), // "on_action_next_step_triggered"
-QT_MOC_LITERAL(17, 377, 26) // "on_pushButton_draw_clicked"
+QT_MOC_LITERAL(17, 377, 26), // "on_pushButton_draw_clicked"
+QT_MOC_LITERAL(18, 404, 25), // "on_action_pause_triggered"
+QT_MOC_LITERAL(19, 430, 24), // "on_action_stop_triggered"
+QT_MOC_LITERAL(20, 455, 26), // "on_action_interv_triggered"
+QT_MOC_LITERAL(21, 482, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(22, 504, 23), // "on_pushButton_1_clicked"
+QT_MOC_LITERAL(23, 528, 25) // "on_action_reset_triggered"
 
     },
     "MainWindow\0call_algorithm\0\0DrawAlg\0"
@@ -65,7 +71,12 @@ QT_MOC_LITERAL(17, 377, 26) // "on_pushButton_draw_clicked"
     "on_action_manual_triggered\0"
     "on_action_prev_step_triggered\0"
     "on_action_next_step_triggered\0"
-    "on_pushButton_draw_clicked"
+    "on_pushButton_draw_clicked\0"
+    "on_action_pause_triggered\0"
+    "on_action_stop_triggered\0"
+    "on_action_interv_triggered\0"
+    "on_pushButton_clicked\0on_pushButton_1_clicked\0"
+    "on_action_reset_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +86,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -83,21 +94,27 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   89,    2, 0x0a /* Public */,
-       3,    0,   90,    2, 0x0a /* Public */,
-       4,    0,   91,    2, 0x08 /* Private */,
-       5,    0,   92,    2, 0x08 /* Private */,
-       6,    0,   93,    2, 0x08 /* Private */,
-       7,    0,   94,    2, 0x08 /* Private */,
-       8,    0,   95,    2, 0x08 /* Private */,
-       9,    0,   96,    2, 0x08 /* Private */,
-      10,    0,   97,    2, 0x08 /* Private */,
-      11,    0,   98,    2, 0x08 /* Private */,
-      12,    1,   99,    2, 0x08 /* Private */,
-      14,    0,  102,    2, 0x08 /* Private */,
-      15,    0,  103,    2, 0x08 /* Private */,
-      16,    0,  104,    2, 0x08 /* Private */,
-      17,    0,  105,    2, 0x08 /* Private */,
+       1,    0,  119,    2, 0x0a /* Public */,
+       3,    0,  120,    2, 0x0a /* Public */,
+       4,    0,  121,    2, 0x08 /* Private */,
+       5,    0,  122,    2, 0x08 /* Private */,
+       6,    0,  123,    2, 0x08 /* Private */,
+       7,    0,  124,    2, 0x08 /* Private */,
+       8,    0,  125,    2, 0x08 /* Private */,
+       9,    0,  126,    2, 0x08 /* Private */,
+      10,    0,  127,    2, 0x08 /* Private */,
+      11,    0,  128,    2, 0x08 /* Private */,
+      12,    1,  129,    2, 0x08 /* Private */,
+      14,    0,  132,    2, 0x08 /* Private */,
+      15,    0,  133,    2, 0x08 /* Private */,
+      16,    0,  134,    2, 0x08 /* Private */,
+      17,    0,  135,    2, 0x08 /* Private */,
+      18,    0,  136,    2, 0x08 /* Private */,
+      19,    0,  137,    2, 0x08 /* Private */,
+      20,    0,  138,    2, 0x08 /* Private */,
+      21,    0,  139,    2, 0x08 /* Private */,
+      22,    0,  140,    2, 0x08 /* Private */,
+      23,    0,  141,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -111,6 +128,12 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   13,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -140,6 +163,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->on_action_prev_step_triggered(); break;
         case 13: _t->on_action_next_step_triggered(); break;
         case 14: _t->on_pushButton_draw_clicked(); break;
+        case 15: _t->on_action_pause_triggered(); break;
+        case 16: _t->on_action_stop_triggered(); break;
+        case 17: _t->on_action_interv_triggered(); break;
+        case 18: _t->on_pushButton_clicked(); break;
+        case 19: _t->on_pushButton_1_clicked(); break;
+        case 20: _t->on_action_reset_triggered(); break;
         default: ;
         }
     }
@@ -174,13 +203,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 21)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 15;
+        _id -= 21;
     }
     return _id;
 }

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <QTimer>
 #include <QGraphicsView>
+#include <QGraphicsTextItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,13 +17,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     GRWIDTH = ui->graphicsView_demo->width() - 10;
     GRHEIGHT = ui->graphicsView_demo->height() - 10;
-    QGraphicsScene *s = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
-    ui->graphicsView_demo->setScene(s);
-    s->setBackgroundBrush(Qt::black);
+    QGraphicsScene *s_demo = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
+    QGraphicsScene *s_str = new QGraphicsScene(0,0, 610, 130, ui->graphicsView_struct);
+    ui->graphicsView_demo->setScene(s_demo);
+    ui->graphicsView_struct->setScene(s_str);
+    s_demo->setBackgroundBrush(Qt::black);
+    s_str->setBackgroundBrush(Qt::black);
     ui->graphicsView_demo->show();
+    ui->graphicsView_struct->show();
     pen.setColor(Qt::black);
     step = 0;
     timer_auto = new QTimer(this);
+    timer_stopped = true;
+    custom_interval_set = false;
     connect(timer_auto, SIGNAL(timeout()), this, SLOT(call_algorithm()));
 }
 
@@ -37,7 +44,13 @@ void MainWindow::call_algorithm(){
     switch(alg_ind)
     {
     case 1:
-        ASinter::doStep_Bubble_sort(true, step, &finished);
+        ASinter::doStep_Bubble_sort(step, &finished);
+        break;
+    case 2:
+        ASinter::doStep_Selection_sort(step, &finished);
+        break;
+    case 3:
+        ASinter::doStep_Insertion_sort(step, &finished);
         break;
     }
     DrawAlg();
@@ -45,7 +58,7 @@ void MainWindow::call_algorithm(){
     if(finished)
     {
         timer_auto->stop();
-        ui->label_str_entered->setText("finished");
+        ui->label_str_entered->setText("Демонстрацію завершено.");
         ui->action_prev_step->setEnabled(false);
         ui->action_next_step->setEnabled(false);
         ui->action_pause->setEnabled(false);
@@ -60,15 +73,6 @@ double vecmax(std::vector<double> v){
     }
     return m;
 }
-
-//double vecmin(std::vector<double> v){
-//    double m = v.at(0);
-//    for(auto it = v.begin() + 1; it != v.end(); it++){
-//        if(*it < m)
-//            m = *it;
-//    }
-//    return m;
-//}
 
 bool vec_cont(std::vector<int> vec, int i){
     for(auto it = vec.begin(); it != vec.end(); it++){
@@ -89,6 +93,7 @@ void MainWindow::DrawAlg(){
         double max = vecmax(vec);
 //        double min = vecmax(vec);
         vec.size() > 20 ? elscalew = (int)((GRWIDTH - 10) / vec.size()) : elscalew = 30;
+        ui->graphicsView_struct->setSceneRect(10,10, vec.size()*50 + 20, ui->graphicsView_struct->height() - 20);
         elscaleh = (GRHEIGHT - 10) / max;
     }
     else
@@ -96,8 +101,10 @@ void MainWindow::DrawAlg(){
         ASinter::getPrevStepInfo(&vec, step, &hl);
     }
     QGraphicsScene *s = new QGraphicsScene(ui->graphicsView_demo);
+    QGraphicsScene* s_str = new QGraphicsScene(ui->graphicsView_struct);
     ui->graphicsView_demo->setScene(s);
-    int x = 0, i = 0;
+    ui->graphicsView_struct->setScene(s_str);
+    int x = 0, i = 0, x1 = 20;
     for(auto it = vec.begin(); it != vec.end(); it++){
         QBrush br;
         if(vec_cont(hl, i))    
@@ -105,16 +112,15 @@ void MainWindow::DrawAlg(){
         else
             br = QBrush(Qt::white);
         s->addRect(x, GRHEIGHT - *it*elscaleh, elscalew, *it*elscaleh, pen, br);
+        s_str->addRect(x1, 40, 50,50, pen, br);
+        QGraphicsTextItem *text = s_str->addText(QString::number(*it));
+        text->setPos(x1 + 5, 45);
         x+= elscalew;
+        x1+=50;
         i++;
     }
+    ui->graphicsView_struct->show();
     ui->graphicsView_demo->show();
-}
-
-void MainWindow::on_action_exit_triggered()
-{
-    remove("struct.txt");
-    QApplication::exit();
 }
 
 void MainWindow::on_radioButton_rnd_clicked()
@@ -142,9 +148,40 @@ void MainWindow::on_pushButton_rnd_clicked()
 {
     //Випадкова генерація структури (масиву) з amt елементами, в інтервалі від min до max
     //та запис до файлу
-    int min = std::stoi(ui->lineEdit_min->text().toStdString());
-    int max = std::stoi(ui->lineEdit_max->text().toStdString());
-    int amt = std::stoi(ui->lineEdit_amt->text().toStdString());
+    bool everything_is_int;
+    int min = ui->lineEdit_min->text().toInt(&everything_is_int);
+    int max = ui->lineEdit_max->text().toInt(&everything_is_int);
+    int amt = ui->lineEdit_amt->text().toInt(&everything_is_int);
+    if(!everything_is_int)
+    {
+        QMessageBox::warning(this, "Введіть ЧИСЛА",
+                             "Ви маєте вводити у поля \"Кількість елементів\", \"Мін.\" і \"Макс.\" ЧИСЛА!");
+        return;
+    }
+    //Перевірка коректності введення параметрів
+    if (min < 0 || max < 0) {
+      QMessageBox::warning(this, "Ліміт",
+                           "Будь ласка, задайте невід'ємний ліміт");
+      return;
+    }
+    if(min > max)
+    {
+        QMessageBox::warning(this, "Максимальне значення",
+                             "Макс. значення не може бути меншим за мінімальне!");
+        return;
+    }
+    if(amt <= 0)
+    {
+        QMessageBox::warning(this, "Кількість",
+                             "Задайте додатню кількість елементів!");
+        return;
+    }
+    if(amt >= 600){//Таке обмеження накладається, тому що ширина виділеного для демонстрації graphicsView - 600 пкс.,
+        //тобто при демонстрації при більших значеннях кількості деякі елементи можуть бути непроілюстровані
+        QMessageBox::warning(this, "Кількість",
+                             "Будь ласка, задайте меншу кількість елементів!");
+        return;
+    }
     std::ofstream o("struct.txt");
     bool b = false;
     if(ui->comboBox->currentIndex() != 0)
@@ -189,12 +226,39 @@ void MainWindow::on_pushButton_draw_clicked()
     ui->pushButton_draw->setFont(font);
 }
 
+void check_string(bool* q, MainWindow* m, std::string file_name){
+    std::ifstream i(file_name);
+    std::string s, sd;
+    std::getline(i, s);
+    std::getline(i, s);
+    std::vector<double> vec;
+    for (int i = 0; i < s.length(); i++) {
+      if (s[i] == ' ') {
+          double d = std::stoi(sd);
+          if(d < 0)
+          {
+              QMessageBox::warning(m, "Елементи", "Задайте невід'ємні елементи!");
+              *q = true;
+              break;
+          }
+          vec.push_back(std::stoi(sd));
+          sd = "";
+      } else {
+        sd+=s[i];
+      }
+    }
+}
+
 void MainWindow::on_pushButton_file_clicked()
 {
     //Читання структури з одного файлу (обирається в діалговому вікні) та запис в інший
     QString file_name = QFileDialog::getOpenFileName(this, "Відкрити файл", QDir::currentPath(), "Текстові файли (*.txt) ;; Усі файли (*.*)");
     if(file_name != "")
     {
+        bool mist;
+        check_string(&mist, this, file_name.toStdString());
+        if(mist)
+            return;
         std::ifstream  src(file_name.toStdString());
         std::ofstream  dst("struct.txt");
         bool b = false;
@@ -242,23 +306,28 @@ void MainWindow::on_action_start_auto_triggered()
 {
     //Запуск автоматичної демонстрації
     if(FILE *f = fopen("struct.txt", "r")){
-    AlgStruct as;
-    as.enterS();
-    step = 1;
-    finished = false;
-    if(!as.check_ready()){//Перевіряємо, чи обрали алгоритм та задали структуру
-        if(ui->comboBox->currentIndex() == 0) //Знаходимо, що саме користувач забув зробити :)
-            QMessageBox::warning(this, "Увага!", "Оберіть алгоритм перед запуском демонстрації!");
-        else
-            QMessageBox::warning(this, "Увага!", "Введіть структуру перед запуском демонстрації!");
+        AlgStruct as;
+        as.enterS();
+        step = 1;
+        finished = false;
+        if(!as.check_ready()){//Перевіряємо, чи обрали алгоритм та задали структуру
+            if(ui->comboBox->currentIndex() == 0) //Знаходимо, що саме користувач забув зробити :)
+                QMessageBox::warning(this, "Увага!", "Оберіть алгоритм перед запуском демонстрації!");
+            else
+                QMessageBox::warning(this, "Увага!", "Введіть структуру перед запуском демонстрації!");
+        }
+        else{
+            FILE* f = fopen("steps.txt", "w");//У цей файл записуватимуться дані про крок алгоритму
+            fclose(f);
+            alg_ind = ui->comboBox->currentIndex();
+            ui->action_pause->setEnabled(true);
+            if(!custom_interval_set)
+                timer_auto->setInterval(500);
+            timer_auto->start();
+            timer_stopped = false;
+            ui->label_str_entered->setText("");
+        }
     }
-    else{
-        FILE* f = fopen("steps.txt", "w");//У цей файл записуватимуться дані про крок алгоритму
-        fclose(f);
-        alg_ind = ui->comboBox->currentIndex();
-        timer_auto->setInterval(500); //Поки що константний інтервал
-        timer_auto->start();
-    }}
     else {
       if (ui->comboBox->currentIndex() == 0)
         QMessageBox::warning(this, "Увага!",
@@ -294,6 +363,7 @@ void MainWindow::on_action_manual_triggered()
         alg_ind = ui->comboBox->currentIndex();
         ui->action_prev_step->setEnabled(true);
         ui->action_next_step->setEnabled(true);
+        ui->label_str_entered->setText("");
         this->call_algorithm();
     }
     }
@@ -309,16 +379,101 @@ void MainWindow::on_action_manual_triggered()
     }
 }
 
-
 void MainWindow::on_action_prev_step_triggered()
 {
-    
+    step-=2;
+    this->call_algorithm();
 }
-
 
 void MainWindow::on_action_next_step_triggered()
 {
     //Перемикаємо крок на наступний
     this->call_algorithm();
 }
+
+void MainWindow::on_action_pause_triggered()
+{
+    if(timer_stopped)
+    {
+        ui->action_pause->setIcon(QIcon(":/img/img/pause.png"));
+        timer_auto->start();
+        timer_stopped = false;
+    }
+    else
+    {
+        ui->action_pause->setIcon(QIcon(":/img/img/cont.png"));
+        timer_auto->stop();
+        timer_stopped = true;
+    }
+}
+
+void MainWindow::on_action_stop_triggered()
+{
+    ui->action_prev_step->setEnabled(false);
+    ui->action_next_step->setEnabled(false);
+    ui->action_pause->setEnabled(false);
+    step = 0;
+    timer_auto->stop();
+    QGraphicsScene *s_demo = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
+    QGraphicsScene *s_str = new QGraphicsScene(0,0, 610, 130, ui->graphicsView_struct);
+    ui->graphicsView_demo->setScene(s_demo);
+    ui->graphicsView_struct->setScene(s_str);
+    s_demo->setBackgroundBrush(Qt::black);
+    s_str->setBackgroundBrush(Qt::black);
+    ui->graphicsView_demo->show();
+    ui->graphicsView_struct->show();
+}
+
+void MainWindow::on_action_reset_triggered()
+{
+    ui->action_prev_step->setEnabled(false);
+    ui->action_next_step->setEnabled(false);
+    ui->action_pause->setEnabled(false);
+    step = 0;
+    timer_auto->stop();
+    ui->comboBox->setCurrentIndex(0);
+    remove("struct.txt");
+    QGraphicsScene *s_demo = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
+    QGraphicsScene *s_str = new QGraphicsScene(0,0, 610, 130, ui->graphicsView_struct);
+    ui->graphicsView_demo->setScene(s_demo);
+    ui->graphicsView_struct->setScene(s_str);
+    s_demo->setBackgroundBrush(Qt::black);
+    s_str->setBackgroundBrush(Qt::black);
+    ui->graphicsView_demo->show();
+    ui->graphicsView_struct->show();
+}
+
+void MainWindow::on_pushButton_1_clicked()
+{
+    //Задання інтервалу таймера
+    int new_interval = ui->lineEdit_tim->text().toInt();
+    if(new_interval < 10)
+        QMessageBox::warning(this, "Замалий інтервал", "Встановіть інтервал більше 10 мс, інакше графіка буде страшною!");
+    else
+    {
+        timer_auto->setInterval(ui->lineEdit_tim->text().toInt());
+        custom_interval_set = true;
+        if(new_interval > 10000)
+            QMessageBox::warning(this, "Завеликий інтервал", "З таким інтервалом демонстрація завершиться не скоро...");
+    }
+}
+
+void MainWindow::on_action_exit_triggered()
+{
+    QApplication::exit();
+}
+
+void MainWindow::on_action_interv_triggered()
+{
+    //Зайва процедура, при видаленні якої компілятор видає помилку, а при видаленні відповідного рядка
+    //у файлі moc_mainwindow.cpp засовує його туди знову
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    //Зайва процедура, при видаленні якої компілятор видає помилку, а при видаленні відповідного рядка
+    //у файлі moc_mainwindow.cpp засовує його туди знову
+}
+
+
 

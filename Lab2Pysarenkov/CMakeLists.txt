@@ -24,6 +24,9 @@ set(PROJECT_SOURCES
         manual_entry.ui
         algstruct.h algstruct.cpp
         bubble_sort.h bubble_sort.cpp
+	merge_sort.h merge_sort.cpp
+	insertion_sort.h insertion_sort.cpp
+	selection_sort.h selection_sort.cpp
         ASinteraction.h ASInteraction.cpp
         img.qrc
 )

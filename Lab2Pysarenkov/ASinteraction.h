@@ -10,6 +10,9 @@ namespace ASinter{
     void getPrevStepInfo(std::vector<int> *ind, std::vector<double> *vstep, int step);//для вирішення наступного кроку алгоритму
     void getPrevStepInfo(std::vector<double> *vstep, int step, std::vector<int> *highlight);//для промальовки попереднього кроку
     
-    void doStep_Bubble_sort(bool autom, int step, bool *finished);
+    void doStep_Bubble_sort(int step, bool *finished);
+    void doStep_Merge_sort(int step, bool *finished);
+    void doStep_Selection_sort(int step, bool *finished);
+    void doStep_Insertion_sort(int step, bool *finished);
 }
 #endif // ASINTERACTION_H

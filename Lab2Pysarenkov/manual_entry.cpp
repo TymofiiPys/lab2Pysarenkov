@@ -1,5 +1,6 @@
 #include "manual_entry.h"
 #include "./ui_manual_entry.h"
+#include "QMessageBox"
 #include <fstream>
 #include <QTextStream>
 
@@ -32,33 +33,36 @@ void Manual_Entry::on_Btn_ex3_clicked()
 
 }
 
+void check_string(bool* q, QString s, Manual_Entry* m){
+    QString sd;
+    std::vector<double> vec;
+    for (int i = 0; i < s.length(); i++) {
+      if (s[i] == ' ') {
+          double d = sd.toDouble();
+          if(d < 0)
+          {
+              QMessageBox::warning(m, "Елементи", "Задайте невід'ємні елементи!");
+              *q = true;
+              break;
+          }
+          vec.push_back(sd.toDouble());
+          sd = "";
+      } else {
+        sd+=s[i];
+      }
+    }
+}
 
 void Manual_Entry::on_Btn_enter_clicked()
 {
-//    if(FILE* f = fopen("struct.txt", "r")){
-//            fclose(f);
-//            std::ifstream src("struct.txt");
-//            std::ofstream dst("temp.txt");
-//            std::string row;
-//            std::getline(src, row);
-//            dst << row << std::endl;
-//            dst << ui->StructEdit->toPlainText().toStdString();
-//            src.close();
-//            dst.flush();
-//            src.close();
-//            remove("struct.txt");
-//            rename("temp.txt", "struct.txt");
-//    }
-//    else{
-//            QFile file("struct.txt");
-//            file.open(QFile::WriteOnly | QFile::Text);
-//            QTextStream out(&file);
-//            out << 1 << 0 << Qt::endl;
-//            out << ui->StructEdit->toPlainText();
-//            file.flush();
-//            file.close();
-//            this->close();
-//    }
+    if(ui->StructEdit->toPlainText().length() > 255){
+        QMessageBox::warning(this, "Кількість", "Задайте меншу кількість елементів!");
+        return;
+    }
+    bool mist = false;
+    check_string(&mist, ui->StructEdit->toPlainText(), this);
+    if(mist)
+        return;
     FILE* f = fopen("a.dat", "r");//Файл, в який записано булеан, що вказує, чи обраний який-небудь алгоритм
     QFile file("struct.txt");
     file.open(QFile::WriteOnly | QFile::Text);

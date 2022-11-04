@@ -46,10 +46,25 @@ private slots:
     
     void on_pushButton_draw_clicked();
     
+    void on_action_pause_triggered();
+    
+    void on_action_stop_triggered();
+    
+    void on_action_interv_triggered();
+    
+    void on_pushButton_clicked();
+    
+    
+    void on_pushButton_1_clicked();
+    
+    void on_action_reset_triggered();
+    
 private:
     Ui::MainWindow *ui;
     QTimer* timer_auto; /*Таймер, який запускається по запуску автоматичної демонстрації алгоритму 
 (перехід на новий крок через певний проміжок часу)*/
+    bool timer_stopped;
+    bool custom_interval_set;
     int step; //Крок алгоритму
     int alg_ind; //Індекс алгоритму, що доменструється
     bool finished; //Чи завершене виконання алгоритму (якщо так - таймер зупиняється або рух на крок уперед унеможливлюється)

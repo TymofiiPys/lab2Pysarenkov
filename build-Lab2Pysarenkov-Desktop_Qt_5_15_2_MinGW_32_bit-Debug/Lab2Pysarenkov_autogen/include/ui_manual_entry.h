@@ -25,12 +25,12 @@ class Ui_Manual_Entry
 public:
     QPlainTextEdit *StructEdit;
     QLabel *label_info;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *Btn_ex1;
     QPushButton *Btn_ex2;
     QPushButton *Btn_ex3;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QPushButton *Btn_enter;
     QPushButton *Btn_cancel;
@@ -40,45 +40,52 @@ public:
         if (Manual_Entry->objectName().isEmpty())
             Manual_Entry->setObjectName(QString::fromUtf8("Manual_Entry"));
         Manual_Entry->resize(675, 541);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Manual_Entry->sizePolicy().hasHeightForWidth());
+        Manual_Entry->setSizePolicy(sizePolicy);
+        Manual_Entry->setMinimumSize(QSize(675, 541));
+        Manual_Entry->setMaximumSize(QSize(675, 541));
         StructEdit = new QPlainTextEdit(Manual_Entry);
         StructEdit->setObjectName(QString::fromUtf8("StructEdit"));
         StructEdit->setGeometry(QRect(10, 100, 530, 431));
         label_info = new QLabel(Manual_Entry);
         label_info->setObjectName(QString::fromUtf8("label_info"));
         label_info->setGeometry(QRect(10, 10, 451, 81));
-        widget = new QWidget(Manual_Entry);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(550, 100, 121, 101));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(Manual_Entry);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(550, 100, 121, 101));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        Btn_ex1 = new QPushButton(widget);
+        Btn_ex1 = new QPushButton(layoutWidget);
         Btn_ex1->setObjectName(QString::fromUtf8("Btn_ex1"));
 
         verticalLayout->addWidget(Btn_ex1);
 
-        Btn_ex2 = new QPushButton(widget);
+        Btn_ex2 = new QPushButton(layoutWidget);
         Btn_ex2->setObjectName(QString::fromUtf8("Btn_ex2"));
 
         verticalLayout->addWidget(Btn_ex2);
 
-        Btn_ex3 = new QPushButton(widget);
+        Btn_ex3 = new QPushButton(layoutWidget);
         Btn_ex3->setObjectName(QString::fromUtf8("Btn_ex3"));
 
         verticalLayout->addWidget(Btn_ex3);
 
-        widget1 = new QWidget(Manual_Entry);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(550, 460, 121, 81));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(Manual_Entry);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(550, 460, 121, 81));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        Btn_enter = new QPushButton(widget1);
+        Btn_enter = new QPushButton(layoutWidget1);
         Btn_enter->setObjectName(QString::fromUtf8("Btn_enter"));
 
         verticalLayout_2->addWidget(Btn_enter);
 
-        Btn_cancel = new QPushButton(widget1);
+        Btn_cancel = new QPushButton(layoutWidget1);
         Btn_cancel->setObjectName(QString::fromUtf8("Btn_cancel"));
 
         verticalLayout_2->addWidget(Btn_cancel);

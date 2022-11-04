@@ -20,8 +20,22 @@ void AlgStruct::enterS(){
     double d;
     std::string sd, row;
     std::getline(file, row);
-    this->S_SET = row[0];
-    this->ALG_SET = row[1];
+    switch (row[0]) {
+    case '0':
+        this->S_SET = false;
+        break;
+    case '1':
+        this->S_SET = true;
+        break;
+    }
+    switch (row[1]) {
+    case '0':
+        this->ALG_SET = false;
+        break;
+    case '1':
+        this->ALG_SET = true;
+        break;
+    }
     std::getline(file, row);//Одновимірний масив записаний в одному рядку
     for (int i = 0; i < row.length(); i++) {
       if (row[i] == ' ') {
