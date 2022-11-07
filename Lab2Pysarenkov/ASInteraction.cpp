@@ -7,31 +7,6 @@
 #include <fstream>
 #include <QMessageBox>
 
-//void ASinter::setSSet(bool ss){ //Запис S_SET
-//    std::ofstream o("temp.txt");
-//    std::ifstream i("struct.txt");
-//    std::string S_BOOLS;
-//    std::getline(i, S_BOOLS);
-//    S_BOOLS[0] = ss;
-//}
-
-//void ASinter::setAlgSet(bool as){
-//    std::ofstream o("temp.txt");
-//    std::ifstream i("struct.txt");
-//    std::string S_BOOLS, foo;
-//    std::getline(i, S_BOOLS);
-//    S_BOOLS[1] = as;
-//    o << S_BOOLS;
-//    while(i.eof()){
-//        std::getline(i, foo);
-//        o << foo;
-//    }
-//    o.close();
-//    i.close();
-//    remove("struct.txt");
-//    rename("temp.txt", "struct.txt");
-//}
-
 void ASinter::writeSToFile(std::vector<double> S){//Запис вектора у файл для подальшого використання в процесі виконання програми
     std::ofstream o("struct.txt");
     o << 0 << 0 << std::endl; //S_SET = false, ALG_SET = false
@@ -61,8 +36,9 @@ std::vector<double> ASinter::readSFromFile(){//Читання вектора з 
 }
 
 void ASinter::getPrevStepInfo(std::vector<int> *ind, std::vector<double> *vstep, int step){
+    //Ця процедура отримує ДЛЯ ЗДІЙСНЕННЯ НАСТУПНОГО КРОКУ АЛГОРИТМУ
+    //вектор на певному кроці та масив ind, у якому записані ітератори циклів, ключі тощо
     std::ifstream i("steps.txt");
-    std::ofstream o("temp1.txt");
     //1-й рядок - індекс останнього кроку
     //2k-й - ітератори циклів
     //(2k+1)-й - елементи, між якими відбувалося порівняння
@@ -72,25 +48,39 @@ void ASinter::getPrevStepInfo(std::vector<int> *ind, std::vector<double> *vstep,
     std::getline(i, row);
     laststep = std::stoi(row);
     r = laststep;
-    if(r - step >= 15){
-        QWidget *w = new QWidget;
-        QMessageBox::warning(w, "Увага", "Досягнено максимально допустимого кроку назад");
-        return;
-    }
-    while(r != step && !i.eof()){//Спускаємось до рядка, що містить step-й крок
+    if(r != step){//Якщо відбувається рух на певну кількість кроків назад
+        if(r - step >= 15){//Перевіряємо, чи знайдеться інформація про шуканий крок,
+            //оскільки файл зберігає записи про <= 15 кроків
+            QWidget *w = new QWidget;
+            QMessageBox::warning(w, "Увага", "Досягнено максимально допустимого кроку назад");
+            return;
+        }
+        std::ofstream o("temp1.txt");//переписуємо зі steps.txt всю наявну інформацію про попередні 
+        //до шуканого кроки, а про наступні - не записуємо
+        while(r!=step && !i.eof()){//Спускаємось до рядка, що містить step-й крок
+            std::getline(i, row);
+            std::getline(i, row);
+            std::getline(i, row);
+            r--;
+        }
+        o << step << std::endl; //записуємо номер кроку, на який ми повернулися - надалі
+        //відштовхуємось від нього як від останнього
+        while(!i.eof())
+        {
+            std::getline(i, row);
+            o << row;
+            if(!i.eof())
+               o << std::endl;
+        }
+        i.close();
+        o.flush();
+        o.close();
+        remove("steps.txt");
+        rename("temp1.txt", "steps.txt");
+        i.open("steps.txt");
         std::getline(i, row);
-        std::getline(i, row);
-        std::getline(i, row);
-        r--;
     }
     std::getline(i, row);
-//    int spaces = 0;
-//    for(int k = 0; k < row.length(); k++){
-//        if(row[k] == ' ')
-//            spaces++;
-//    }
-////    int* indexes = new int[spaces - 1];
-//    *ind = new int[spaces + 1];
     int j = 0;
     std::string sindex = "";
     for(int k = 0; k < row.length(); k++){
@@ -120,6 +110,8 @@ void ASinter::getPrevStepInfo(std::vector<int> *ind, std::vector<double> *vstep,
 }
 
 void ASinter::getPrevStepInfo(std::vector<double> *vstep, int step, std::vector<int> *highlight){
+    //Ця процедура отримує ДЛЯ ПРОМАЛЬОВКИ У GRAPHICSVIEW
+    //вектор на певному кроці та елементи цього вектора, які потрібно виділити
     std::ifstream i("steps.txt");
     int r, laststep;
     std::string row;

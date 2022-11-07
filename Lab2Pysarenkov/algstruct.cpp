@@ -51,7 +51,6 @@ void AlgStruct::enterS(){
 
 void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std::vector<double> vstep, int step){
     std::ofstream o("temp.txt");
-    std::ifstream i("steps.txt");
     o << step << std::endl;
     for(int i = 0; i < indamt; i++){
         o << ind[i];
@@ -70,25 +69,33 @@ void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std
         if(it != vstep.end() - 1)
             o << " ";
     }
-    o << std::endl;
     std::string s;
-    std::getline(i, s);
-    if(step > 15)//Зберігається інформація не більше, ніж для 15 кроків
+    if(step != 1)
     {
-        int c = 0;
-        while(c < 42){
-            std::getline(i, s);
-            o << s << std::endl;
-            c++;
-        }
-    }
-    else
-        while(!i.eof())
+        o << std::endl;
+        std::ifstream i("steps.txt");
+        std::getline(i, s);
+        if(step > 15)//Зберігається інформація не більше, ніж для 15 кроків
         {
-            std::getline(i, s);
-            o << s << std::endl;
+            int c = 0;
+            while(c < 42 && !i.eof()){
+                std::getline(i, s);
+                o << s;
+                c++;
+                if(c < 42 && !i.eof())
+                    o <<std::endl;
+            }
         }
-    i.close();
+        else
+            while(!i.eof())
+            {
+                std::getline(i, s);
+                o << s;
+                if(!i.eof())
+                    o << std::endl;
+            }
+        i.close();
+    }
     o.flush();
     o.close();
     remove("steps.txt");
@@ -102,28 +109,4 @@ void AlgStruct::reset(){
 bool AlgStruct::check_ready(){
     return this->S_SET && this->ALG_SET;
 }
-
-//void AlgStruct::entry_rnd(double min, double max, double amount) {
-//    this->S_SET = true;
-//    int interval = max - min;
-//    for(int i = 0; i < amount; i++){
-//        this->S.push_back(rand() % interval + min);
-//    }
-//}
-
-//void AlgStruct::entry_manual(std::string text) {
-//    this->S_SET = true;
-//    int i, j;
-//    std::string snum;
-//    for(i = 0; i < text.length(); i++){
-//        if(text[i] == ' ')
-//        {
-//            snum = "";
-//            this->S.push_back(std::stoi(snum));
-//        }
-//        else{
-//            snum += text[i];
-//        }
-//    }
-//}
 

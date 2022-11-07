@@ -59,6 +59,8 @@ private slots:
     
     void on_action_reset_triggered();
     
+    void on_comboBox_alg_currentIndexChanged(int index);
+    
 private:
     Ui::MainWindow *ui;
     QTimer* timer_auto; /*Таймер, який запускається по запуску автоматичної демонстрації алгоритму 
