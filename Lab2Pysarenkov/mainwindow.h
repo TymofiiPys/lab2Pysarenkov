@@ -19,6 +19,7 @@ public:
 public slots:
     void call_algorithm();    
     void DrawAlg();
+    void editActionH();
 private slots:
     void on_action_exit_triggered();
 
@@ -36,8 +37,6 @@ private slots:
 
     void on_pushButton_rnd_clicked();
     
-    void on_comboBox_currentIndexChanged(int index);
-    
     void on_action_manual_triggered();
     
     void on_action_prev_step_triggered();
@@ -50,16 +49,41 @@ private slots:
     
     void on_action_stop_triggered();
     
-    void on_action_interv_triggered();
-    
-    void on_pushButton_clicked();
-    
-    
     void on_pushButton_1_clicked();
     
     void on_action_reset_triggered();
     
     void on_comboBox_alg_currentIndexChanged(int index);
+    
+    void on_action_h1_triggered();
+    
+    void on_action_h2_triggered();
+    
+    void on_action_h3_triggered();
+    
+    void on_action_h4_triggered();
+    
+    void on_action_h5_triggered();
+    
+    void on_action_h6_triggered();
+    
+    void on_action_h7_triggered();
+    
+    void on_action_h8_triggered();
+    
+    void on_action_h9_triggered();
+    
+    void on_action_h10_triggered();
+    
+    void on_action_h11_triggered();
+    
+    void on_action_h12_triggered();
+    
+    void on_action_h13_triggered();
+    
+    void on_action_h14_triggered();
+    
+    void on_action_h15_triggered();
     
 private:
     Ui::MainWindow *ui;

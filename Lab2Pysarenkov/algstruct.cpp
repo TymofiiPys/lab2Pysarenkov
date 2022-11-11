@@ -49,7 +49,7 @@ void AlgStruct::enterS(){
     file.close();
 }
 
-void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std::vector<double> vstep, int step){
+void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std::string step_info, std::vector<double> vstep, int step){
     std::ofstream o("temp.txt");
     o << step << std::endl;
     for(int i = 0; i < indamt; i++){
@@ -64,6 +64,7 @@ void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std
             o << " ";
     }
     o << std::endl;
+    o << step_info << std::endl;
     for(auto it = vstep.begin(); it != vstep.end(); it++){
         o << *it;
         if(it != vstep.end() - 1)
@@ -75,14 +76,14 @@ void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std
         o << std::endl;
         std::ifstream i("steps.txt");
         std::getline(i, s);
-        if(step > 15)//Зберігається інформація не більше, ніж для 15 кроків
+        if(step > 16)//Зберігається інформація не більше, ніж для 15 кроків + 1 для відновлення найбільш давнього кроку
         {
             int c = 0;
-            while(c < 42 && !i.eof()){
+            while(c < 60 && !i.eof()){
                 std::getline(i, s);
                 o << s;
                 c++;
-                if(c < 42 && !i.eof())
+                if(c < 60 && !i.eof())
                     o <<std::endl;
             }
         }
@@ -100,10 +101,6 @@ void AlgStruct::saveStepInfo(int* ind, int indamt, int* highlight, int hamt, std
     o.close();
     remove("steps.txt");
     rename("temp.txt", "steps.txt");
-}
-
-void AlgStruct::reset(){
-    this->S_SET = false;
 }
 
 bool AlgStruct::check_ready(){

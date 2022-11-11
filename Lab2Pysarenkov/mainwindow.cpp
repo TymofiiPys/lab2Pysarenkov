@@ -54,17 +54,90 @@ void MainWindow::call_algorithm(){
     case 3:
         ASinter::doStep_Insertion_sort(step, &finished);
         break;
+    case 4:
+        ASinter::doStep_Merge_sort(step, &finished);
+        break;
     }
     DrawAlg();
+    editActionH();
     step++;
     if(finished)
     {
         timer_auto->stop();
+        ui->action_pause->setIcon(QIcon(":/img/img/pause.png"));
+        timer_stopped = true;  
         ui->label_str_entered->setText("Демонстрацію завершено.");
-//        ui->action_prev_step->setEnabled(false);
         ui->action_next_step->setEnabled(false);
         ui->action_pause->setEnabled(false);
+        ui->action_manual->setEnabled(true);
+        ui->action_start_auto->setEnabled(true);
     }
+}
+
+void MainWindow::editActionH(){
+    std::ifstream i("steps.txt");
+    std::string s;
+    QString steps_info[16];
+    int amount_of_steps = 0, laststep, earlieststep;
+    std::getline(i, s);
+    laststep = std::stoi(s);
+    while(!i.eof()){
+        std::getline(i, s);
+        std::getline(i, s);
+        std::getline(i, s);
+        steps_info[amount_of_steps] = QString::fromStdString(s);
+        std::getline(i, s);
+        amount_of_steps++;
+        if(i.eof())
+            earlieststep = laststep-amount_of_steps;
+    }
+    if(earlieststep > 1)//Якщо найдавніший крок не перший - то відновити його не вдасться
+        amount_of_steps--;
+    i.seekg(0, i.beg);
+    std::getline(i, s);
+    bool Visible[16];
+    QString actionText[16];
+    int it = 0;
+    for(int j = 0; j < 16; j++)
+        Visible[j] = false;
+    for(int j = amount_of_steps - 1; j >= 0; j--){
+        Visible[j] = true;
+        actionText[it] = steps_info[j];
+        it++;
+    }
+    ui->action_h1->setVisible(Visible[0]);
+    ui->action_h2->setVisible(Visible[1]);
+    ui->action_h3->setVisible(Visible[2]);
+    ui->action_h4->setVisible(Visible[3]);
+    ui->action_h5->setVisible(Visible[4]);
+    ui->action_h6->setVisible(Visible[5]);
+    ui->action_h7->setVisible(Visible[6]);
+    ui->action_h8->setVisible(Visible[7]);
+    ui->action_h9->setVisible(Visible[8]);
+    ui->action_h10->setVisible(Visible[9]);
+    ui->action_h11->setVisible(Visible[10]);
+    ui->action_h12->setVisible(Visible[11]);
+    ui->action_h13->setVisible(Visible[12]);
+    ui->action_h14->setVisible(Visible[13]);
+    ui->action_h15->setVisible(Visible[14]);
+    
+    ui->action_h1->setText("1. " + actionText[0]);
+    ui->action_h2->setText("2. " +actionText[1]);
+    ui->action_h3->setText("3. " +actionText[2]);
+    ui->action_h4->setText("4. " +actionText[3]);
+    ui->action_h5->setText("5. " +actionText[4]);
+    ui->action_h6->setText("6. " +actionText[5]);
+    ui->action_h7->setText("7. " +actionText[6]);
+    ui->action_h8->setText("8. " +actionText[7]);
+    ui->action_h9->setText("9. " +actionText[8]);
+    ui->action_h10->setText("10. " +actionText[9]);
+    ui->action_h11->setText("11. " +actionText[10]);
+    ui->action_h12->setText("12. " +actionText[11]);
+    ui->action_h13->setText("13. " +actionText[12]);
+    ui->action_h14->setText("14. " +actionText[13]);
+    ui->action_h15->setText("15. " +actionText[14]);
+    
+    i.close();
 }
 
 double vecmax(std::vector<double> v){
@@ -93,7 +166,6 @@ void MainWindow::DrawAlg(){
         as.enterS();
         vec = as.get_S();
         double max = vecmax(vec);
-//        double min = vecmax(vec);
         vec.size() > 20 ? elscalew = (int)((GRWIDTH - 10) / vec.size()) : elscalew = 30;
         ui->graphicsView_struct->setSceneRect(10,10, vec.size()*75 + 20, ui->graphicsView_struct->height() - 20);
         elscaleh = (GRHEIGHT - 10) / max;
@@ -246,8 +318,6 @@ void MainWindow::on_pushButton_man_clicked()
     QFont font = ui->pushButton_draw->font();
     font.setBold(true);
     ui->pushButton_draw->setEnabled(true);
-    ui->action_manual->setEnabled(false);
-    ui->action_start_auto->setEnabled(false);
     ui->pushButton_draw->setFont(font);
     step = 0;
 }
@@ -258,8 +328,6 @@ void MainWindow::on_pushButton_draw_clicked()
     QFont font = ui->pushButton_draw->font();
     font.setBold(false);
     ui->pushButton_draw->setEnabled(false);
-    ui->action_manual->setEnabled(true);
-    ui->action_start_auto->setEnabled(true);
     ui->pushButton_draw->setFont(font);
 }
 
@@ -269,6 +337,7 @@ void check_string(bool* q, MainWindow* m, std::string file_name){
     std::getline(i, s);
     std::getline(i, s);
     std::vector<double> vec;
+    int vecamount = 0;
     for (int i = 0; i < s.length(); i++) {
       if (s[i] == ' ') {
           double d = std::stoi(sd);
@@ -284,8 +353,15 @@ void check_string(bool* q, MainWindow* m, std::string file_name){
               *q = true;
               break;
           }
+          if(vecamount > 600)
+          {
+              QMessageBox::warning(m, "Кількість", "Задайте меншу кількість елементів!");
+              *q = true;
+              break;
+          }
           vec.push_back(std::stoi(sd));
           sd = "";
+          vecamount++;
       } else {
         sd+=s[i];
       }
@@ -317,11 +393,6 @@ void MainWindow::on_pushButton_file_clicked()
     }
 }
 
-void MainWindow::on_comboBox_currentIndexChanged(int index)
-{
-    
-}
-
 void MainWindow::on_action_start_auto_triggered()
 {
     //Запуск автоматичної демонстрації
@@ -342,7 +413,6 @@ void MainWindow::on_action_start_auto_triggered()
             step = 1;
             alg_ind = ui->comboBox_alg->currentIndex();
             ui->action_pause->setEnabled(true);
-            ui->action_manual->setEnabled(false);
             ui->action_prev_step->setEnabled(false);
             ui->action_next_step->setEnabled(false);
             if(!custom_interval_set)
@@ -386,6 +456,9 @@ void MainWindow::on_action_manual_triggered()
             fclose(f1);
             step = 1;
             alg_ind = ui->comboBox_alg->currentIndex();
+            timer_stopped = true;
+            ui->action_pause->setIcon(QIcon(":/img/img/cont.png"));
+            ui->action_pause->setEnabled(true);
             ui->action_prev_step->setEnabled(false);
             ui->action_next_step->setEnabled(true);
             ui->label_str_entered->setText("");
@@ -424,6 +497,8 @@ bool nowhere_to_go(int step){
 void MainWindow::on_action_prev_step_triggered()
 {
     step-=2;
+    ui->action_pause->setIcon(QIcon(":/img/img/cont.png"));
+    ui->action_pause->setEnabled(true);
     if(step < 2 || nowhere_to_go(step - 2))
         ui->action_prev_step->setEnabled(false);
     this->call_algorithm();
@@ -442,13 +517,19 @@ void MainWindow::on_action_pause_triggered()
     if(timer_stopped)
     {
         ui->action_pause->setIcon(QIcon(":/img/img/pause.png"));
+        if(!custom_interval_set)
+            timer_auto->setInterval(500);
         timer_auto->start();
+        ui->action_prev_step->setEnabled(false);
+        ui->action_next_step->setEnabled(false);
         timer_stopped = false;
     }
     else
     {
         ui->action_pause->setIcon(QIcon(":/img/img/cont.png"));
         timer_auto->stop();
+        ui->action_prev_step->setEnabled(true);
+        ui->action_next_step->setEnabled(true);
         timer_stopped = true;
     }
 }
@@ -458,6 +539,7 @@ void MainWindow::on_action_stop_triggered()
     ui->action_prev_step->setEnabled(false);
     ui->action_next_step->setEnabled(false);
     ui->action_pause->setEnabled(false);
+    ui->action_pause->setIcon(QIcon(":/img/img/pause.png"));
     step = 0;
     timer_auto->stop();
     QGraphicsScene *s_demo = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
@@ -509,21 +591,6 @@ void MainWindow::on_action_exit_triggered()
     QApplication::exit();
 }
 
-void MainWindow::on_action_interv_triggered()
-{
-    //Зайва процедура, при видаленні якої компілятор видає помилку, а при видаленні відповідного рядка
-    //у файлі moc_mainwindow.cpp засовує його туди знову
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    //Зайва процедура, при видаленні якої компілятор видає помилку, а при видаленні відповідного рядка
-    //у файлі moc_mainwindow.cpp засовує його туди знову
-}
-
-
-
-
 void MainWindow::on_comboBox_alg_currentIndexChanged(int index)
 {
     //Обираємо в comboBox якийсь пункт - 
@@ -547,9 +614,178 @@ void MainWindow::on_comboBox_alg_currentIndexChanged(int index)
       src.close();
       dst.flush();
       dst.close();
-//      QFile str("struct.txt"), temp("temp.txt");
       QFile::remove("struct.txt");
       QFile::rename("temp.txt", "struct.txt");
     }
+}
+
+int amtsteps(){
+    std::ifstream i("steps.txt");
+    std::string s;
+    int amount_of_steps = 0, laststep, earlieststep;
+    std::getline(i, s);
+    laststep = std::stoi(s);
+    while(!i.eof()){
+        std::getline(i, s);
+        std::getline(i, s);
+        std::getline(i, s);
+        std::getline(i, s);
+        amount_of_steps++;
+        if(i.eof())
+            earlieststep = laststep-amount_of_steps;
+    }
+    i.close();
+    if(earlieststep > 1)
+        amount_of_steps--;
+    return amount_of_steps;
+}
+
+void MainWindow::on_action_h1_triggered()
+{
+    if(amtsteps() == 15)
+        step-=15;
+    else
+        step-=amtsteps();
+    this->call_algorithm();   
+}
+
+
+void MainWindow::on_action_h2_triggered()
+{
+    if(amtsteps() == 15)
+        step-=14;
+    else
+        step-=amtsteps() - 1;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h3_triggered()
+{
+    if(amtsteps() == 15)
+        step-=13;
+    else
+        step-=amtsteps() - 2;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h4_triggered()
+{
+    if(amtsteps() == 15)
+        step-=12;
+    else
+        step-= amtsteps() - 3;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h5_triggered()
+{
+    if(amtsteps() == 15)
+        step-=11;
+    else
+        step-=amtsteps() - 4;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h6_triggered()
+{
+    if(amtsteps() == 15)
+        step-=10;
+    else
+        step-=amtsteps() - 5;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h7_triggered()
+{
+    if(amtsteps() == 15)
+        step-=9;
+    else
+        step-=amtsteps() - 6;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h8_triggered()
+{
+    if(amtsteps() == 15)
+        step-=8;
+    else
+        step-=amtsteps() -7;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h9_triggered()
+{
+    if(amtsteps() == 15)
+        step-=7;
+    else
+        step-=amtsteps() - 8;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h10_triggered()
+{
+    if(amtsteps() == 15)
+        step-=6;
+    else
+        step-=amtsteps() - 9;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h11_triggered()
+{
+    if(amtsteps() == 15)
+        step-=5;
+    else
+        step-=amtsteps() - 10;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h12_triggered()
+{
+    if(amtsteps() == 15)
+        step-=4;
+    else
+        step-=amtsteps() - 11;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h13_triggered()
+{
+    if(amtsteps() == 15)
+        step-=3;
+    else
+        step-=amtsteps() - 12;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h14_triggered()
+{
+    if(amtsteps() == 15)
+        step-=2;
+    else
+        step-=amtsteps() - 13;
+    this->call_algorithm();  
+}
+
+
+void MainWindow::on_action_h15_triggered()
+{
+    if(amtsteps() == 15)
+        step-=1;
+    else
+        step-=amtsteps() - 14;
+    this->call_algorithm();  
 }
 
