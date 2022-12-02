@@ -9,6 +9,7 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -93,7 +94,6 @@ public:
     QMenuBar *menubar;
     QMenu *menu_file;
     QMenu *menu_demo;
-    QMenu *menu_3;
     QMenu *menu_4;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -237,6 +237,8 @@ public:
 
         lineEdit_amt = new QLineEdit(layoutWidget1);
         lineEdit_amt->setObjectName(QString::fromUtf8("lineEdit_amt"));
+        lineEdit_amt->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        lineEdit_amt->setInputMethodHints(Qt::ImhNone);
 
         horizontalLayout->addWidget(lineEdit_amt);
 
@@ -257,6 +259,7 @@ public:
 
         lineEdit_min = new QLineEdit(layoutWidget1);
         lineEdit_min->setObjectName(QString::fromUtf8("lineEdit_min"));
+        lineEdit_min->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
         horizontalLayout_2->addWidget(lineEdit_min);
 
@@ -267,6 +270,7 @@ public:
 
         lineEdit_max = new QLineEdit(layoutWidget1);
         lineEdit_max->setObjectName(QString::fromUtf8("lineEdit_max"));
+        lineEdit_max->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
         horizontalLayout_2->addWidget(lineEdit_max);
 
@@ -330,8 +334,6 @@ public:
         menu_file->setObjectName(QString::fromUtf8("menu_file"));
         menu_demo = new QMenu(menubar);
         menu_demo->setObjectName(QString::fromUtf8("menu_demo"));
-        menu_3 = new QMenu(menu_demo);
-        menu_3->setObjectName(QString::fromUtf8("menu_3"));
         menu_4 = new QMenu(menu_demo);
         menu_4->setObjectName(QString::fromUtf8("menu_4"));
         MainWindow->setMenuBar(menubar);
@@ -348,7 +350,6 @@ public:
         menu_file->addSeparator();
         menu_file->addAction(action_reset);
         menu_file->addAction(action_exit);
-        menu_demo->addAction(menu_3->menuAction());
         menu_demo->addSeparator();
         menu_demo->addAction(menu_4->menuAction());
         menu_demo->addSeparator();
@@ -434,9 +435,12 @@ public:
         radioButton_rnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\277\320\260\320\264\320\272\320\276\320\262\320\260 \320\263\320\265\320\275\320\265\321\200\320\260\321\206\321\226\321\217", nullptr));
         groupBox_rnd->setTitle(QString());
         label_amt->setText(QCoreApplication::translate("MainWindow", "\320\232\321\226\320\273\321\214\320\272\321\226\321\201\321\202\321\214 \320\265\320\273\320\265\320\274\320\265\320\275\321\202\321\226\320\262", nullptr));
+        lineEdit_amt->setText(QCoreApplication::translate("MainWindow", "10", nullptr));
         label_interv->setText(QCoreApplication::translate("MainWindow", "\320\206\320\275\321\202\320\265\321\200\320\262\320\260\320\273\320\270:", nullptr));
         label_min->setText(QCoreApplication::translate("MainWindow", "\320\234\321\226\320\275.", nullptr));
+        lineEdit_min->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         label_max->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\320\272\321\201.", nullptr));
+        lineEdit_max->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
         pushButton_rnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\321\201\321\202\320\270", nullptr));
         radioButton_file->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\265\320\275\320\275\321\217 \321\226\320\267 \321\204\320\260\320\271\320\273\321\203", nullptr));
         pushButton_file->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\321\200\320\260\321\202\320\270 \321\204\320\260\320\271\320\273", nullptr));
@@ -455,10 +459,10 @@ public:
 "\320\262\320\262\320\276\320\264\320\270\321\202\320\270 \320\267\320\275\320\260\321\207\320\265\320\275\320\275\321\217, \320\274\320\265\320\275\321\210\321\226 \320\267\320\260 5 \320\274\321\201 - \320\263\321\200\320\260\321\204\321\226\321\207\320\275\320\260 \321\201\320\272\320\273\320\260\320\264\320\276\320\262\320\260 \320\262\320\270\320\263\320\273\321\217\320\264\320\260\321\202\320\270\320\274\320\265 \320\275\320\265\320\275\320\260\320\271\320\272"
                         "\321\200\320\260\321\211\320\265)", nullptr));
 #endif // QT_CONFIG(tooltip)
+        lineEdit_tim->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         pushButton_1->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\321\201\321\202\320\270", nullptr));
         menu_file->setTitle(QCoreApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", nullptr));
         menu_demo->setTitle(QCoreApplication::translate("MainWindow", "\320\224\320\265\320\274\320\276\320\275\321\201\321\202\321\200\320\260\321\206\321\226\321\217", nullptr));
-        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274\320\270", nullptr));
         menu_4->setTitle(QCoreApplication::translate("MainWindow", "\320\206\321\201\321\202\320\276\321\200\321\226\321\217", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi

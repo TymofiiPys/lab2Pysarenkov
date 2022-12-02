@@ -179,7 +179,17 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_amt"/>
+          <widget class="QLineEdit" name="lineEdit_amt">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+           <property name="inputMethodHints">
+            <set>Qt::ImhNone</set>
+           </property>
+           <property name="text">
+            <string>10</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -200,7 +210,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_min"/>
+          <widget class="QLineEdit" name="lineEdit_min">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_max">
@@ -210,7 +227,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_max"/>
+          <widget class="QLineEdit" name="lineEdit_max">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+           <property name="text">
+            <string>40</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -409,6 +433,9 @@
      <string>Введіть інтервал між кроками при автоматичній демонстрації (не рекомендується
 вводити значення, менші за 5 мс - графічна складова виглядатиме ненайкраще)</string>
     </property>
+    <property name="text">
+     <string>500</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_1">
     <property name="geometry">
@@ -445,11 +472,6 @@
     <property name="title">
      <string>Демонстрація</string>
     </property>
-    <widget class="QMenu" name="menu_3">
-     <property name="title">
-      <string>Алгоритми</string>
-     </property>
-    </widget>
     <widget class="QMenu" name="menu_4">
      <property name="title">
       <string>Історія</string>
@@ -471,7 +493,6 @@
      <addaction name="action_h14"/>
      <addaction name="action_h15"/>
     </widget>
-    <addaction name="menu_3"/>
     <addaction name="separator"/>
     <addaction name="menu_4"/>
     <addaction name="separator"/>

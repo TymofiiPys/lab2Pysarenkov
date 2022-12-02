@@ -16,10 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->lineEdit_amt->setValidator(new QIntValidator(0, 600, this));
+    ui->lineEdit_min->setValidator(new QDoubleValidator(0, INT_MAX, 6, this));
+    ui->lineEdit_max->setValidator(new QDoubleValidator(0, INT_MAX, 6, this));
+    ui->lineEdit_tim->setValidator(new QIntValidator(10, INT_MAX, this));
     GRWIDTH = ui->graphicsView_demo->width() - 10;
     GRHEIGHT = ui->graphicsView_demo->height() - 10;
     QGraphicsScene *s_demo = new QGraphicsScene(0, 0, GRWIDTH, GRHEIGHT, ui->graphicsView_demo);
-    QGraphicsScene *s_str = new QGraphicsScene(0,0, 610, 130, ui->graphicsView_struct);
+    QGraphicsScene *s_str = new QGraphicsScene(0,0, 610, 120, ui->graphicsView_struct);
     ui->graphicsView_demo->setScene(s_demo);
     ui->graphicsView_struct->setScene(s_str);
     s_demo->setBackgroundBrush(Qt::black);
@@ -167,7 +171,7 @@ void MainWindow::DrawAlg(){
         vec = as.get_S();
         double max = vecmax(vec);
         vec.size() > 20 ? elscalew = (int)((GRWIDTH - 10) / vec.size()) : elscalew = 30;
-        ui->graphicsView_struct->setSceneRect(10,10, vec.size()*75 + 20, ui->graphicsView_struct->height() - 20);
+        ui->graphicsView_struct->setSceneRect(10,5, vec.size()*75, ui->graphicsView_struct->height() - 30);
         elscaleh = (GRHEIGHT - 10) / max;
         ui->action_prev_step->setEnabled(false);
         ui->action_next_step->setEnabled(false);
@@ -189,14 +193,14 @@ void MainWindow::DrawAlg(){
         else
             br = QBrush(Qt::white);
         s->addRect(x, GRHEIGHT - *it*elscaleh, elscalew, *it*elscaleh, pen, br);
-        s_str->addRect(x1, 30, 75,75, pen, br);
+        s_str->addRect(x1, 25, 75,75, pen, br);
         QGraphicsTextItem *text = s_str->addText(QString::number(round(*it * 10)/10));
         QFont textfont;
         QString qs = QString::number(round(*it * 10)/10);
-        if(qs.length() > 6)
+        if(qs.length() > 3)
             textfont.setPointSize((int)(48/qs.length()));
         else
-            textfont.setPointSize(8);
+            textfont.setPointSize(15);
         text->setFont(textfont);
         text->setPos(x1 + 5, 35);
         x+= elscalew;
@@ -233,51 +237,56 @@ void MainWindow::on_pushButton_rnd_clicked()
     //Випадкова генерація структури (масиву) з amt елементами, в інтервалі від min до max
     //та запис до файлу
     bool everything_is_int;
-    int min = ui->lineEdit_min->text().toInt(&everything_is_int);
-    int max = ui->lineEdit_max->text().toInt(&everything_is_int);
-    int amt = ui->lineEdit_amt->text().toInt(&everything_is_int);
+    double min = ui->lineEdit_min->text().toDouble(&everything_is_int);
+    double max = ui->lineEdit_max->text().toDouble(&everything_is_int);
+    double amt = ui->lineEdit_amt->text().toDouble(&everything_is_int);
     if(ui->lineEdit_min->text().isEmpty() || ui->lineEdit_max->text().isEmpty() || ui->lineEdit_amt->text().isEmpty()){
         QMessageBox::warning(this, "Пусті поля",
                              "Будь ласка, введіть УСІ параметри.");
         return;
     }
-    if(!everything_is_int)
-    {
-        QMessageBox::warning(this, "Введіть ЧИСЛА",
-                             "Ви маєте вводити у поля \"Кількість елементів\", \"Мін.\" і \"Макс.\" ЧИСЛА!");
-        return;
-    }
+//    if(!everything_is_int)
+//    {
+//        QMessageBox::warning(this, "Введіть ЧИСЛА",
+//                             "Ви маєте вводити у поля \"Кількість елементів\", \"Мін.\" і \"Макс.\" ЧИСЛА!");
+//        return;
+//    }
     //Перевірка коректності введення параметрів
-    if (min < 0 || max < 0) {
-      QMessageBox::warning(this, "Ліміт",
-                           "Будь ласка, задайте невід'ємний ліміт.");
-      return;
-    }
-    if(min >= max)
+//    if (min < 0 || max < 0) {
+//      QMessageBox::warning(this, "Ліміт",
+//                           "Будь ласка, задайте невід'ємний ліміт.");
+//      return;
+//    }
+    if(min > max)
     {
         QMessageBox::warning(this, "Максимальне значення",
                              "Макс. значення не може бути меншим за мінімальне!");
         return;
     }
-    if(max >= INT_MAX){
-        if(min >= INT_MAX)
-        {QMessageBox::warning(this, "Мінімальне значення",
-                                 "Задайте ліміти менші, ніж 2^31 - 1");
-            return;
-        }
-        else
-            max = INT_MAX;
-    }
-    if(amt <= 0)
-    {
-        QMessageBox::warning(this, "Кількість",
-                             "Задайте додатню кількість елементів!");
+    if(min == max){
+        QMessageBox::warning(this, "Максимальне значення",
+                             "Макс. значення не може дорівнювати мінімальному!");
         return;
     }
+//    if(max >= INT_MAX){
+//        if(min >= INT_MAX)
+//        {QMessageBox::warning(this, "Мінімальне значення",
+//                                 "Задайте ліміти менші, ніж 2^31 - 1");
+//            return;
+//        }
+//        else
+//            max = INT_MAX;
+//    }
+//    if(amt <= 0)
+//    {
+//        QMessageBox::warning(this, "Кількість",
+//                             "Задайте додатню кількість елементів!");
+//        return;
+//    }
     if(amt >= 600){//Таке обмеження накладається, тому що ширина виділеного для демонстрації graphicsView - 600 пкс.,
         //тобто при демонстрації при більших значеннях кількості деякі елементи можуть бути непроілюстровані
         QMessageBox::warning(this, "Кількість",
-                             "Будь ласка, задайте меншу кількість елементів!");
+                             "Будь ласка, задайте кількість елементів, меншу за 600!");
         return;
     }
     std::ofstream o("struct.txt");
@@ -483,6 +492,7 @@ bool nowhere_to_go(int step){
     std::getline(i, s);
     int r = std::stoi(s);
     while(!i.eof()){
+        std::getline(i,s);
         std::getline(i,s);
         std::getline(i,s);
         std::getline(i,s);
